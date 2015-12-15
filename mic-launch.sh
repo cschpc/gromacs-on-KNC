@@ -20,9 +20,6 @@ then
 	if (( $DEBUG ))
 	then
 		echo "Running (on x86_64) [$PMI_RANK]: ${CMD_PATH}${CMD_HOST} $CMD_FLAGS"
-	elif [ "$PMI_RANK" == "0" ]
-	then
-		echo "Running (on x86_64): ${CMD_PATH}${CMD_HOST} $CMD_FLAGS"
 	fi
 	${CMD_PATH}${CMD_HOST} $CMD_FLAGS
 elif [ $ARCH == "k1om" ]
@@ -33,9 +30,6 @@ then
 	if (( $DEBUG ))
 	then 
 		echo "Running (on MIC) [$PMI_RANK]: ${CMD_PATH}${CMD_MIC} $CMD_FLAGS"
-	elif [ $PMI_RANK == "0" ]
-	then
-		echo "Running (on MIC): ${CMD_PATH}${CMD_MIC} $CMD_FLAGS"
 	fi
 	${CMD_PATH}${CMD_MIC} $CMD_FLAGS
 fi

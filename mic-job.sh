@@ -7,10 +7,9 @@
 #SBATCH -p mic
 #SBATCH --gres=mic:2
 #SBATCH --exclusive
-#SBATCH --exclude=m2,m3,m4,m7,m10,m11,m12,m13,m14,m19
 
 # load any modules needed
-#module load xx
+module load gromacs-env/5.0.7-mic
 
 # Change these to the desired no. of threads/tasks for the job!
 HOST_PPN=1    # no. of MPI tasks per CPU
@@ -48,10 +47,10 @@ export I_MPI_DAPL_PROVIDER=ofa-v2-mlx4_0-1
 
 # define the commands to run on the HOST and MIC nodes with mic-launch.sh
 #   note: if using modules (above) CMD_PATH can most likely be empty
-export CMD_PATH=/homeappl/home/louhivuo/appl_taito/gromacs-5.0.7/bin/
+export CMD_PATH=
 export CMD_HOST=mdrun_mpi
 export CMD_MIC=mdrun_mic
-export CMD_FLAGS="-v -npme ${NPME} -ntomp_pme ${HOST_THREADS}"
+export CMD_FLAGS="-npme ${NPME} -ntomp_pme ${HOST_THREADS}"
 
 # launch the job
 #   note: uses environmental variables MIC_THREADS, HOST_THREADS, CMD_PATH, 
