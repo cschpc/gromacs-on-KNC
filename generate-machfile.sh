@@ -36,8 +36,11 @@ fi
 for i in $(cat $mach)
 do
 	echo ${i}-mic0:${MIC_PPN} >> $OUTPUT
-	echo ${i}:${HOST_PPN}     >> $OUTPUT
 	echo ${i}-mic1:${MIC_PPN} >> $OUTPUT
+done
+for i in $(cat $mach)
+do
+	echo ${i}:${HOST_PPN}     >> $OUTPUT
 	echo ${i}:${HOST_PPN}     >> $OUTPUT
 done
 

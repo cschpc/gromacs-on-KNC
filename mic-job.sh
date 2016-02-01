@@ -25,7 +25,7 @@ export HOST_THREADS=$(( $HOST_CORES / $HOST_PPN ))
 export MIC_THREADS=$(( ($MIC_CORES - 1) * $MIC_TPC / $MIC_PPN ))
 
 # PME nodes for GROMACS (remove for others!)
-NPME=$(( $HOST_PE * $HOST_PPN ))
+NPME=$(( $HOST_PE * $HOST_PPN * $SLURM_NNODES ))
 
 # Uncomment the following lines to turn on debugging
 #export DEBUG=1
@@ -50,7 +50,7 @@ export I_MPI_DAPL_PROVIDER=ofa-v2-mlx4_0-1
 export CMD_PATH=
 export CMD_HOST=mdrun_mpi
 export CMD_MIC=mdrun_mic
-export CMD_FLAGS="-npme ${NPME} -ntomp_pme ${HOST_THREADS}"
+export CMD_FLAGS="-npme ${NPME} -ntomp_pme ${HOST_THREADS} -ddorder pp_pme"
 
 # launch the job
 #   note: uses environmental variables MIC_THREADS, HOST_THREADS, CMD_PATH, 
