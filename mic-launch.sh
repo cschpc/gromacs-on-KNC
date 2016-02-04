@@ -11,7 +11,6 @@
 #   MIC_KMP_AFFINITY -- KMP_AFFINITY for MIC cards
 
 ARCH=`uname -m`
-(( $DEBUG)) && echo "MPI task $PMI_RANK: $ARCH"
 
 if [ $ARCH == "x86_64" ]
 then
