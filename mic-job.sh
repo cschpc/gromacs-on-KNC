@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -N 2
+#SBATCH -N 1
 #SBATCH -t 00:60:00
 #SBATCH -J gmx-mic 
 #SBATCH -o job-%J.out
@@ -9,11 +9,11 @@
 #SBATCH --exclusive
 
 # load any modules needed
-module load gromacs-env/5.0.7-mic
+module load gromacs-env/5.1.1-mic
 
 # Change these to the desired no. of threads/tasks for the job!
 HOST_PPN=1    # no. of MPI tasks per CPU
-MIC_PPN=12    # no. of MPI tasks per MIC card
+MIC_PPN=20    # no. of MPI tasks per MIC card
 MIC_TPC=4     # no. of threads per MIC core
 # Hardware definition (Taito)
 HOST_PE=2     # no. of host CPUs
