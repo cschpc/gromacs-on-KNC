@@ -9,7 +9,7 @@
 #SBATCH -p mic
 #SBATCH --gres=mic:1
 
-MIC_PPN=40    # no. of MPI tasks per MIC card
+MIC_PPN=30    # no. of MPI tasks per MIC card
 
 
 #============== MACHINE SPECIFIC (taito.csc.fi) ===============
