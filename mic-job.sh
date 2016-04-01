@@ -69,7 +69,7 @@ export I_MPI_DAPL_PROVIDER=ofa-v2-mlx4_0-1
 export CMD_PATH=
 export CMD_HOST=mdrun_mpi
 export CMD_MIC=mdrun_mic
-export CMD_FLAGS="-npme ${NPME} -ntomp_pme ${HOST_THREADS} -maxh 0.1 -dlb yes"
+export CMD_FLAGS="-npme ${NPME} -ntomp_pme ${HOST_THREADS} -dlb yes"
 
 
 # launch the job
