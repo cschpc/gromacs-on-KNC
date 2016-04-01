@@ -25,7 +25,6 @@ mach=tmp.machfile
 echo "Generating a machinefile for $NODES dual-MIC nodes with $HOST_PPN and $MIC_PPN MPI tasks on each host CPU and MIC card, respectively."
 
 $MPIRUN -n $NODES -ppn 1 hostname > $host
-
 cat $host | sort | uniq > $mach
 
 if [ -e $OUTPUT ]
@@ -35,10 +34,11 @@ fi
 
 for i in $(cat $mach)
 do
-	echo ${i}-mic0:${MIC_PPN} >> $OUTPUT
-	echo ${i}:${HOST_PPN}     >> $OUTPUT
-	echo ${i}-mic1:${MIC_PPN} >> $OUTPUT
-	echo ${i}:${HOST_PPN}     >> $OUTPUT
+   for d in ${OFFLOAD_DEVICES//,/ }
+   do
+      echo ${i}-mic${d}:${MIC_PPN} >> $OUTPUT
+      echo ${i}:${HOST_PPN}     >> $OUTPUT
+   done
 done
 
 (( $DEBUG )) || rm $host $mach
