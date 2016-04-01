@@ -9,7 +9,7 @@
 #SBATCH -p mic
 #SBATCH --gres=mic:1
 
-MIC_PPN=12    # no. of MPI tasks per MIC card
+MIC_PPN=40    # no. of MPI tasks per MIC card
 
 
 #============== MACHINE SPECIFIC (taito.csc.fi) ===============
@@ -26,7 +26,7 @@ if [ $OFFLOAD_DEVICES == "0" ]
 then
   export KMP_AFFINITY="explicit,proclist=[0,1,2,3,4,5],verbose"
 fi
-if [ OFFLOAD_DEVICES == "1" ]
+if [ $OFFLOAD_DEVICES == "1" ]
 then
   export KMP_AFFINITY="explicit,proclist=[6,7,8,9,10,11],verbose"
 fi
