@@ -1,0 +1,37 @@
+# MACHINE SPECIFICATION FOR
+#   salomon.it4i.cz
+#
+
+# Change to working directory
+cd $PBS_O_WORKDIR
+
+# Load any modules needed
+module load intel/2016.01
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/all/icc/2016.1.150-GCC-4.9.3-2.25/compilers_and_libraries_2016.1.150/linux/compiler/lib/mic
+
+# Job size
+if [[ ${PBS_NUM_NODES:+x} ]]
+then
+  NODES=$PBS_NUM_NODES
+else
+  NODES=$(cat $PBS_NODEFILE | wc -l)
+fi
+MICS=(0 1)    # assume that both MICs are allocated
+
+# Default no. of threads/tasks for the job
+HOST_PPN=2    # no. of MPI tasks per CPU
+MIC_PPN=40    # no. of MPI tasks per MIC card
+MIC_TPC=4     # no. of threads per MIC core
+
+# Hardware definition
+HOST_PE=2     # no. of host CPUs
+HOST_CORES=12 # no. of CPU cores in a processor
+MIC_CORES=61  # no. of MIC cores in a card (N-1 used for compute)
+
+# MPI environment
+export MPIRUN="mpiexec.hydra"
+export I_MPI_MIC=1
+export I_MPI_JOB_RESPECT_PROCESS_PLACEMENT=disable
+export I_MPI_FABRICS=shm:dapl
+export I_MPI_DAPL_PROVIDER_LIST=ofa-v2-mlx4_0-1u,ofa-v2-scif0,ofa-v2-mcm-1
+

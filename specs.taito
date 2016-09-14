@@ -1,0 +1,42 @@
+# MACHINE SPECIFICATION FOR
+#   taito.csc.fi
+#
+# See below for an example of how to setup support for half-node jobs
+# using a dynamic MICS definition and explicit pinning.
+#
+
+# Load any modules needed
+module load gromacs-env/5.1.1-mic
+
+# Job size
+NODES=$SLURM_NNODES
+MICS=(${OFFLOAD_DEVICES//,/})
+
+# Default no. of threads/tasks for the job
+HOST_PPN=1    # no. of MPI tasks per CPU
+MIC_PPN=30    # no. of MPI tasks per MIC card
+MIC_TPC=4     # no. of threads per MIC core
+
+# Hardware definition
+HOST_PE=${#MICS[@]} # no. of host CPUs, set to number of MIC cards
+HOST_CORES=6  # no. of CPU cores in a processor
+MIC_CORES=61  # no. of MIC cores in a card (use 60 for compute)
+
+# Set explicit pinning if only one MIC is used
+#   (add verbose to KMP_AFFINITY to see the actual placement)
+if [ $OFFLOAD_DEVICES == "0" ]
+then
+  KMP_AFFINITY="explicit,proclist=[0,1,2,3,4,5]"
+fi
+if [ $OFFLOAD_DEVICES == "1" ]
+then
+  KMP_AFFINITY="explicit,proclist=[6,7,8,9,10,11]"
+fi
+
+# MPI environment
+export MPIRUN="mpiexec.hydra"
+export I_MPI_MIC=1
+export I_MPI_JOB_RESPECT_PROCESS_PLACEMENT=disable
+export I_MPI_FABRICS=shm:dapl
+export I_MPI_DAPL_PROVIDER=ofa-v2-mlx4_0-1
+
