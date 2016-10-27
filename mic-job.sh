@@ -9,6 +9,9 @@
 #SBATCH -p mic
 #SBATCH --gres=mic:1
 
+# if needed, change to working directory first (e.g. in PBS)
+#cd $PBS_O_WORKDIR
+
 # read machine specific settings (e.g. hardware topology)
 #   (see specs.taito for a SLURM example incl. support for half-node jobs
 #    and specs.salomon for a PBS example)

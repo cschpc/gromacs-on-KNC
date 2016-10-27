@@ -2,9 +2,6 @@
 #   salomon.it4i.cz
 #
 
-# Change to working directory
-cd $PBS_O_WORKDIR
-
 # Load any modules needed
 module load intel/2016.01
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/all/icc/2016.1.150-GCC-4.9.3-2.25/compilers_and_libraries_2016.1.150/linux/compiler/lib/mic
@@ -12,11 +9,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/all/icc/2016.1.150-GCC-4.9.3-2.25/
 # Job size
 if [[ ${PBS_NUM_NODES:+x} ]]
 then
-  NODES=$PBS_NUM_NODES
+  export NODES=$PBS_NUM_NODES
 else
-  NODES=$(cat $PBS_NODEFILE | wc -l)
+  export NODES=$(cat $PBS_NODEFILE | wc -l)
 fi
-MICS=(0 1)    # assume that both MICs are allocated
+export MICS=(0 1)    # assume that both MICs are allocated
 
 # Default no. of threads/tasks for the job
 HOST_PPN=2    # no. of MPI tasks per CPU

@@ -9,8 +9,8 @@
 module load gromacs-env/5.1.1-mic
 
 # Job size
-NODES=$SLURM_NNODES
-MICS=(${OFFLOAD_DEVICES//,/})
+export NODES=$SLURM_NNODES
+export MICS=(${OFFLOAD_DEVICES//,/})
 
 # Default no. of threads/tasks for the job
 HOST_PPN=1    # no. of MPI tasks per CPU
