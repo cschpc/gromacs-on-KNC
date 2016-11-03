@@ -10,10 +10,10 @@ Copy scripts to your work directory and modify mic-job.sh (if needed).
 
 ```
 ssh taito
-git clone https://github.com/cschpc/gmx-knc-launcher
+git clone https://github.com/cschpc/gromacs-on-knc
 
 cd $WRKDIR/some-directory
-cp ~/gmx-knc-launcher/* .
+cp ~/gromacs-on-knc/* .
 
 (edit mic-job.sh)
 

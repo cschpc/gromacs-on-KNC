@@ -30,7 +30,7 @@ Specifications for Taito-mic are included (_specs.taito_), so no modifications
 should be needed to start using them on Taito-mic.
 
 If you haven't got the full repository, you can get it from:
- https://github.com/cschpc/gmx-knc-launcher
+ https://github.com/cschpc/gromacs-on-knc
 
 Please see README.md for instructions on how to use the launcher scripts.
 
