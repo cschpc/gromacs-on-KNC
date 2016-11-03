@@ -1,7 +1,8 @@
 ### Description
 
-Scripts to launch GROMACS runs on KNC (Taito-mic). See docs/ for documentation
-and best practices.
+Scripts to launch GROMACS runs on KNC (Taito-mic). See
+[docs/taito.md](docs/taito.md) for documentation and best practices on
+Taito-mic.
 
 
 ### Usage
