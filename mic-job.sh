@@ -18,7 +18,7 @@
 source specs.taito
 
 # if needed, change the no. of MPI tasks per MIC card to a more optimal
-# value for your simulation system (see xx for a rough guideline)
+# value for your simulation system (see docs/taito.md for a rough guideline)
 #MIC_PPN=30
 
 # uncomment the following lines to turn on debugging
